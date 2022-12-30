@@ -1,0 +1,22 @@
+{% load static %}
+
+{% if combinations %}
+    <table>
+        <tr>
+            <td>인형</td>
+            <td>공격성</td>
+            <td>안정성</td>
+            <td>특이성</td>
+        </tr>
+    {% for c in combinations %}
+        <tr>
+            <td><img src="{% get_static_prefix %}algorithm/doll_icon/{{ c.doll.name|lower }}.webp"><br>{{ c.doll.name_kr }}</td>
+            <td><img src="algo_icon/{{ c.offense.base.slot }}"><br><b>{{ c.offense.base.name_kr }}</b><br>{{ c.offense.primary.desc_kr }}</td>
+            <td><img src="algo_icon/{{ c.stability.base.slot }}"><br><b>{{ c.stability.base.name_kr }}</b><br>{{ c.stability.primary.desc_kr }}</td>
+            <td><img src="algo_icon/{{ c.special.base.slot }}"><br><b>{{ c.special.base.name_kr }}</b><br>{{ c.special.primary.desc_kr }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <h1>NO DATA</h1>
+{% endif %}
