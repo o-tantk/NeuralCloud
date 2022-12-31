@@ -1,6 +1,14 @@
 {% load static %}
 {% get_static_prefix as STATIC_PREFIX %}
-<link rel="stylesheet" href="{{ STATIC_PREFIX }}algorithm/style.css?after">
+
+<head>
+    <meta charset="utf-8">
+    {% if debug %}
+    <link rel="stylesheet" href="{{ STATIC_PREFIX }}algorithm/style.css?after">
+    {% else %}
+    <link rel="stylesheet" href="{{ STATIC_PREFIX }}algorithm/style.css">
+    {% endif %}
+</head>
 
 <h1>알고리즘 세트표</h1>
 
