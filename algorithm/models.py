@@ -35,6 +35,7 @@ class Algorithm(models.Model):
         choices=Slot.choices,
         default=Slot.OFFENSE,
     )
+    is_useless = models.BooleanField(default=False)
 
     def icon(self):
         return self.name_kr.replace(' ', '_')
@@ -70,6 +71,13 @@ class RecommendedSet(models.Model):
     )
     special_primary_stat_kr = models.CharField(max_length=50)
     special_secondary_stat_kr = models.CharField(max_length=50, blank=True)
+
+    def algorithm_list(self):
+        return [
+            {'algorithm': self.offense_algorithm, 'primary': self.offense_primary_stat_kr},
+            {'algorithm': self.stability_algorithm, 'primary': self.stability_primary_stat_kr},
+            {'algorithm': self.special_algorithm, 'primary': self.special_primary_stat_kr},
+        ]
 
     def __str__(self):
         return "%s 알고리즘 세트" % self.doll.name_kr

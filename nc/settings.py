@@ -127,3 +127,8 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), '.static_root')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+#    '192.168.1.23',
+]

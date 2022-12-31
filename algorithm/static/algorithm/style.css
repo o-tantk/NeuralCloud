@@ -5,6 +5,7 @@
 
 body {
     font-family: 'Noto Sans KR', sans-serif;
+    max-width: 40rem;
 }
 
 a {
@@ -22,6 +23,9 @@ a::after {
 table {
     border : 4px solid #2A2726;
     border-collapse : collapse;
+    margin-bottom: 1rem;
+    table-layout: fixed;
+    width: 100%;
 }
 
 caption {
@@ -32,7 +36,6 @@ td, th {
     border : 2px solid #2A2726;
     text-align: center;
     line-height: 1.5rem;
-    width: 10rem;
 }
 
 th, td.doll {
@@ -68,15 +71,23 @@ img.specialist {
     background-color: magenta;
 }
 
-.algorithm img{
+figure {
+    margin: 0.2rem;
+    display: inline-block;
+}
+
+figcaption {
+    margin-top: 0.2rem;
+}
+
+img.algorithm_icon {
     width: 6rem;
     height: 6rem;
     border-radius: 5%;
 }
 
-figure {
+figure.references {
     opacity: 0.5;
-    margin-left: 1rem;
 }
 
 ul {

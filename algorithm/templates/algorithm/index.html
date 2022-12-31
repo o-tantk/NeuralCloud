@@ -10,10 +10,12 @@
     {% endif %}
 </head>
 
+<body>
+
 <h1>알고리즘 세트표</h1>
 
 {% if sets %}
-    <table border="1">
+    <table>
         <caption>갱신일: {% now "Y-m-d" %}</caption>
         <tr>
             <th>인형</th>
@@ -24,37 +26,42 @@
     {% for s in sets %}
         <tr>
             <td class="doll">
-                <img src="{{ STATIC_PREFIX }}algorithm/doll_icon/{{ s.doll.name|lower }}.webp">
-                <br>
-                {% with s.doll.get_doll_class_display|lower as doll_class %}
-                    <img src="{{ STATIC_PREFIX }}algorithm/class_icon/{{ doll_class }}.webp" class="class_icon {{ doll_class }}"> {{ s.doll.name_kr }}
-                {% endwith %}
+                <figure>
+                    <img src="{{ STATIC_PREFIX }}algorithm/doll_icon/{{ s.doll.name|lower }}.webp">
+                    <figcaption>
+                    {% with s.doll.get_doll_class_display|lower as doll_class %}
+                        <img src="{{ STATIC_PREFIX }}algorithm/class_icon/{{ doll_class }}.webp" class="class_icon {{ doll_class }}"> {{ s.doll.name_kr }}
+                    {% endwith %}
+                    </figcaption>
+                </figure>
             </td>
-            <td class="algorithm">
-                <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ s.offense_algorithm.icon }}.webp">
-                <br>
-                <b>{{ s.offense_algorithm.name_kr }}</b>
-                <br>
-                {{ s.offense_primary_stat_kr }}
+        {% for a in s.algorithm_list %}
+            <td>
+                <figure>
+                    <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ a.algorithm.icon }}.webp" class="algorithm_icon">
+                    <figcaption><b>{{ a.algorithm.name_kr }}</b><br>{{ a.primary }}</figcaption>
+                </figure>
             </td>
-            <td class="algorithm">
-                <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ s.stability_algorithm.icon }}.webp">
-                <br>
-                <b>{{ s.stability_algorithm.name_kr }}</b>
-                <br>
-                {{ s.stability_primary_stat_kr }}
-            </td>
-            <td class="algorithm">
-                <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ s.special_algorithm.icon }}.webp">
-                <br>
-                <b>{{ s.special_algorithm.name_kr }}</b>
-                <br>
-                {{ s.special_primary_stat_kr }}
-            </td>
+        {% endfor %}
         </tr>
     {% endfor %}
     </table>
-    <figure>
+    <table>
+        <tr>
+            <th>사용처 없음</th>
+        </tr>
+        <tr>
+            <td>
+            {% for a in useless_algos %}
+                <figure>
+                    <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ a.icon }}.webp" class="algorithm_icon">
+                    <figcaption>{{ a.name_kr }}</figcaption>
+                </figure>
+            {% endfor %}
+            </td>
+        </tr>
+    </table>
+    <figure class="references">
         <figcaption>References</figcaption>
         <ul>
             <li><a href="https://nalu.wiki/neuralcloud"></a></li>
@@ -67,3 +74,5 @@
 {% else %}
     <h1>NO DATA</h1>
 {% endif %}
+
+</body>
