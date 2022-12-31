@@ -21,19 +21,7 @@ class Doll(models.Model):
     def __str__(self):
         return self.name_kr
 
-class PrimaryStat(models.Model):
-    desc_kr = models.CharField(max_length=30)
-
-    def __str__(self):
-        return "[1st] " + self.desc_kr
-
-class SecondaryStat(models.Model):
-    desc_kr = models.CharField(max_length=30)
-
-    def __str__(self):
-        return "[2nd] " + self.desc_kr
-
-class AlgorithmBase(models.Model):
+class Algorithm(models.Model):
     class Slot(models.TextChoices):
         OFFENSE = 'OFF', gettext_lazy('Offense')
         STABILITY = 'STB', gettext_lazy('Stability')
@@ -48,41 +36,40 @@ class AlgorithmBase(models.Model):
         default=Slot.OFFENSE,
     )
 
+    def icon(self):
+        return self.name_kr.replace(' ', '_')
+
     def __str__(self):
         return "[%s] %s" % (self.slot, self.name_kr)
 
-class Algorithm(models.Model):
-    base = models.ForeignKey(AlgorithmBase, on_delete=models.CASCADE, related_name='+')
-    primary = models.ForeignKey(PrimaryStat, on_delete=models.CASCADE, related_name='+')
-    secondary0 = models.ForeignKey(SecondaryStat, on_delete=models.CASCADE, related_name='+', null=True, blank=True)
-    secondary1 = models.ForeignKey(SecondaryStat, on_delete=models.CASCADE, related_name='+', null=True, blank=True)
-
-    def get_slot(self):
-        return self.base
-
-    def __str__(self):
-        return " ".join([str(self.base), str(self.primary), str(self.secondary0), str(self.secondary1)])
-
-class Combination(models.Model):
+class RecommendedSet(models.Model):
     doll = models.ForeignKey(Doll, on_delete=models.CASCADE)
-    offense = models.ForeignKey(
+    offense_algorithm = models.ForeignKey(
         Algorithm,
         on_delete=models.CASCADE,
-        limit_choices_to={'base__slot': AlgorithmBase.Slot.OFFENSE},
+        limit_choices_to={'slot': Algorithm.Slot.OFFENSE},
         related_name='+',
     )
-    stability = models.ForeignKey(
+    offense_primary_stat_kr = models.CharField(max_length=50)
+    offense_secondary_stat_kr = models.CharField(max_length=50, blank=True)
+
+    stability_algorithm = models.ForeignKey(
         Algorithm,
         on_delete=models.CASCADE,
-        limit_choices_to={'base__slot': AlgorithmBase.Slot.STABILITY},
+        limit_choices_to={'slot': Algorithm.Slot.STABILITY},
         related_name='+',
     )
-    special = models.ForeignKey(
+    stability_primary_stat_kr = models.CharField(max_length=50)
+    stability_secondary_stat_kr = models.CharField(max_length=50, blank=True)
+
+    special_algorithm = models.ForeignKey(
         Algorithm,
         on_delete=models.CASCADE,
-        limit_choices_to={'base__slot': AlgorithmBase.Slot.SPECIAL},
+        limit_choices_to={'slot': Algorithm.Slot.SPECIAL},
         related_name='+',
     )
+    special_primary_stat_kr = models.CharField(max_length=50)
+    special_secondary_stat_kr = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
-        return "%s 알고리즘" % self.doll.name_kr
+        return "%s 알고리즘 세트" % self.doll.name_kr

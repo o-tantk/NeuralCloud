@@ -1,22 +1,61 @@
 {% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+<link rel="stylesheet" href="{{ STATIC_PREFIX }}algorithm/style.css?after">
 
-{% if combinations %}
-    <table>
+<h1>알고리즘 세트표</h1>
+
+{% if sets %}
+    <table border="1">
+        <caption>갱신일: {% now "Y-m-d" %}</caption>
         <tr>
-            <td>인형</td>
-            <td>공격성</td>
-            <td>안정성</td>
-            <td>특이성</td>
+            <th>인형</th>
+            <th>공격성</th>
+            <th>안정성</th>
+            <th>특이성</th>
         </tr>
-    {% for c in combinations %}
+    {% for s in sets %}
         <tr>
-            <td><img src="{% get_static_prefix %}algorithm/doll_icon/{{ c.doll.name|lower }}.webp"><br>{{ c.doll.name_kr }}</td>
-            <td><img src="algo_icon/{{ c.offense.base.slot }}"><br><b>{{ c.offense.base.name_kr }}</b><br>{{ c.offense.primary.desc_kr }}</td>
-            <td><img src="algo_icon/{{ c.stability.base.slot }}"><br><b>{{ c.stability.base.name_kr }}</b><br>{{ c.stability.primary.desc_kr }}</td>
-            <td><img src="algo_icon/{{ c.special.base.slot }}"><br><b>{{ c.special.base.name_kr }}</b><br>{{ c.special.primary.desc_kr }}</td>
+            <td class="doll">
+                <img src="{{ STATIC_PREFIX }}algorithm/doll_icon/{{ s.doll.name|lower }}.webp">
+                <br>
+                {% with s.doll.get_doll_class_display|lower as doll_class %}
+                    <img src="{{ STATIC_PREFIX }}algorithm/class_icon/{{ doll_class }}.webp" class="class_icon {{ doll_class }}"> {{ s.doll.name_kr }}
+                {% endwith %}
+            </td>
+            <td class="algorithm">
+                <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ s.offense_algorithm.icon }}.webp">
+                <br>
+                <b>{{ s.offense_algorithm.name_kr }}</b>
+                <br>
+                {{ s.offense_primary_stat_kr }}
+            </td>
+            <td class="algorithm">
+                <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ s.stability_algorithm.icon }}.webp">
+                <br>
+                <b>{{ s.stability_algorithm.name_kr }}</b>
+                <br>
+                {{ s.stability_primary_stat_kr }}
+            </td>
+            <td class="algorithm">
+                <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ s.special_algorithm.icon }}.webp">
+                <br>
+                <b>{{ s.special_algorithm.name_kr }}</b>
+                <br>
+                {{ s.special_primary_stat_kr }}
+            </td>
         </tr>
     {% endfor %}
     </table>
+    <figure>
+        <figcaption>References</figcaption>
+        <ul>
+            <li><a href="https://nalu.wiki/neuralcloud"></a></li>
+            <li><a href="https://tangible-sorrel-c22.notion.site/PNCDB-dc548a0c6a8d4a4c839cdf2309ca6feb"></a></li>
+            <li><a href="https://gall.dcinside.com/mgallery/board/view/?id=neuralcloud&no=183853"></a></li>
+            <li><a href="https://arca.live/b/neuralcloud/64304242"></a></li>
+            <li><a href="https://gall.dcinside.com/mgallery/board/view/?id=neuralcloud&no=72218"></a></li>
+        </ul>
+    </figure>
 {% else %}
     <h1>NO DATA</h1>
 {% endif %}
