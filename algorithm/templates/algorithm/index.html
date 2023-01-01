@@ -3,11 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    {% if debug %}
-    <link rel="stylesheet" href="{{ STATIC_PREFIX }}algorithm/style.css?after">
-    {% else %}
-    <link rel="stylesheet" href="{{ STATIC_PREFIX }}algorithm/style.css">
-    {% endif %}
+    <link rel="stylesheet" href="{{ STATIC_PREFIX }}algorithm/style.css?version={% now 'U' %}">
 </head>
 
 <body>
@@ -25,7 +21,7 @@
         </tr>
     {% for s in sets %}
         <tr>
-            <td class="doll">
+            <th>
                 <figure>
                     <img src="{{ STATIC_PREFIX }}algorithm/doll_icon/{{ s.doll.name|lower }}.webp">
                     <figcaption>
@@ -61,16 +57,13 @@
             </td>
         </tr>
     </table>
-    <figure class="references">
-        <figcaption>References</figcaption>
-        <ul>
-            <li><a href="https://nalu.wiki/neuralcloud"></a></li>
-            <li><a href="https://tangible-sorrel-c22.notion.site/PNCDB-dc548a0c6a8d4a4c839cdf2309ca6feb"></a></li>
-            <li><a href="https://gall.dcinside.com/mgallery/board/view/?id=neuralcloud&no=183853"></a></li>
-            <li><a href="https://arca.live/b/neuralcloud/64304242"></a></li>
-            <li><a href="https://gall.dcinside.com/mgallery/board/view/?id=neuralcloud&no=72218"></a></li>
-        </ul>
-    </figure>
+    <ul title="References" hidden>
+        <li><a href="https://nalu.wiki/neuralcloud"></a></li>
+        <li><a href="https://tangible-sorrel-c22.notion.site/PNCDB-dc548a0c6a8d4a4c839cdf2309ca6feb"></a></li>
+        <li><a href="https://gall.dcinside.com/mgallery/board/view/?id=neuralcloud&no=183853"></a></li>
+        <li><a href="https://arca.live/b/neuralcloud/64304242"></a></li>
+        <li><a href="https://gall.dcinside.com/mgallery/board/view/?id=neuralcloud&no=72218"></a></li>
+    </ul>
 {% else %}
     <h1>NO DATA</h1>
 {% endif %}

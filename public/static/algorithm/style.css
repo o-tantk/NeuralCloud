@@ -38,9 +38,13 @@ td, th {
     line-height: 1.5rem;
 }
 
-th, td.doll {
+th {
     background-color: #2A2726;
     color: white;
+}
+
+img {
+    width: 100%;
 }
 
 img.class_icon {
@@ -81,19 +85,20 @@ figcaption {
 }
 
 img.algorithm_icon {
-    width: 6rem;
-    height: 6rem;
+    max-width: 6rem;
     border-radius: 5%;
-}
-
-figure.references {
-    opacity: 0.5;
 }
 
 ul {
     margin: 0;
     list-style-type: none;
     padding-left: 0;
+}
+
+ul[title]::before {
+    content: attr(title);
+    display: block;
+    font-weight: bold;
 }
 
 li::before {
