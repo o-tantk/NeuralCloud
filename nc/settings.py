@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ''
-with open(os.path.join(os.path.dirname(__file__), '.SECRET_KEY'), 'r') as file:
+with open(os.path.join(BASE_DIR, '.SECRET_KEY'), 'r') as file:
     SECRET_KEY = file.read().rstrip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
