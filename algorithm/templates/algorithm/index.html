@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ STATIC_PREFIX }}algorithm/style.css?version={% now 'U' %}">
+    <title>뉴럴 클라우드 알고리즘표</title>
+    <link rel="icon" type="image/x-icon" href="{{ STATIC_PREFIX }}algorithm/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_PREFIX }}algorithm/style.css?version={% now 'U' %}">
 </head>
 
 <body>
 
-<h1>알고리즘 세트표</h1>
+<h1>뉴럴 클라우드 알고리즘표</h1>
 
 {% if sets %}
     <table>
