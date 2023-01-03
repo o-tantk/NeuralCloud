@@ -1,30 +1,20 @@
-function changeStyleSheet(name) {
+function applyHidden(statStyle) {
     var attr;
-    
-    /*
-    for (var i = 0; (attr = document.getElementsByTagName("link")[i]); ++i) {
-        if (attr.getAttribute("rel") == "stylesheet") {
-            const href = attr.getAttribute("href").replace(/(?!.*\/).*(?=\.css)/, name);
-            attr.setAttribute("href", href);
-        }
-    }
-    */
-
     for (var i = 0; (attr = document.getElementsByClassName("stat")[i]); ++i) {
-        const show = attr.classList.contains(name);
-        attr.hidden = !show;
+        attr.hidden = !attr.classList.contains(statStyle);
     }
-
-    setCookie("style", name, 30)
 }
 
+// TODO: vary for secondary stat
 function onChangeCheckbox(checkbox) {
     if (checkbox.checked) {
-        changeStyleSheet("style_abbr");
+        applyHidden("abbr");
     }
     else {
-        changeStyleSheet("style");
+        applyHidden("default");
     }
+
+    setCookie("stat_style", checkbox.checked, 30)
 }
 
 function setCookie(name, value, days) {
@@ -58,12 +48,10 @@ function getCookie(name) {
 }
 
 window.onload = function(e) {
-    const styleName = getCookie("style");
-    if (styleName) {
-        const checkbox = document.getElementById(styleName);
-        if (checkbox) {
-            checkbox.checked = true;
-            checkbox.onchange();
-        }
+    const statStyle = getCookie("stat_style");
+    if (statStyle) {
+        const checkbox = document.getElementById("stat_style");
+        checkbox.checked = statStyle == "true";
+        checkbox.onchange();
     }
 }

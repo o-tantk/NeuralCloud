@@ -43,6 +43,16 @@ class Algorithm(models.Model):
     def __str__(self):
         return "[%s] %s" % (self.slot, self.name_kr)
 
+class Stat(models.Model):
+    name_kr = models.CharField(max_length=50)
+    alias_kr = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name_kr
+
+    class Meta:
+        ordering = ['name_kr']
+
 class RecommendedSet(models.Model):
     doll = models.ForeignKey(Doll, on_delete=models.CASCADE)
     offense_algorithm = models.ForeignKey(
@@ -51,6 +61,7 @@ class RecommendedSet(models.Model):
         limit_choices_to={'slot': Algorithm.Slot.OFFENSE},
         related_name='+',
     )
+    offense_primary_stats = models.ManyToManyField(Stat, related_name='+')
     offense_primary_stat_kr = models.CharField(max_length=50)
     offense_secondary_stat_kr = models.CharField(max_length=50, blank=True)
 
@@ -60,6 +71,7 @@ class RecommendedSet(models.Model):
         limit_choices_to={'slot': Algorithm.Slot.STABILITY},
         related_name='+',
     )
+    stability_primary_stats = models.ManyToManyField(Stat, related_name='+')
     stability_primary_stat_kr = models.CharField(max_length=50)
     stability_secondary_stat_kr = models.CharField(max_length=50, blank=True)
 
@@ -69,15 +81,16 @@ class RecommendedSet(models.Model):
         limit_choices_to={'slot': Algorithm.Slot.SPECIAL},
         related_name='+',
     )
+    special_primary_stats = models.ManyToManyField(Stat, related_name='+')
     special_primary_stat_kr = models.CharField(max_length=50)
     special_secondary_stat_kr = models.CharField(max_length=50, blank=True)
 
     def algorithm_list(self):
         return [
-            {'algorithm': self.offense_algorithm, 'primary': self.offense_primary_stat_kr},
-            {'algorithm': self.stability_algorithm, 'primary': self.stability_primary_stat_kr},
-            {'algorithm': self.special_algorithm, 'primary': self.special_primary_stat_kr},
+            {'algorithm': self.offense_algorithm, 'primary': self.offense_primary_stats.all()},
+            {'algorithm': self.stability_algorithm, 'primary': self.stability_primary_stats.all()},
+            {'algorithm': self.special_algorithm, 'primary': self.special_primary_stats.all()},
         ]
 
     def __str__(self):
-        return "%s 알고리즘 세트" % self.doll.name_kr
+        return "%s 알고리즘" % self.doll.name_kr

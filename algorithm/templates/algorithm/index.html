@@ -1,4 +1,4 @@
-{% load static %}
+{% load static algorithm_extras %}
 {% get_static_prefix as STATIC_PREFIX %}
 
 <head>
@@ -14,7 +14,11 @@
 
 {% if sets %}
     <table>
-        <caption>갱신일: {% now "Y-m-d" %}</caption>
+        <caption>
+            갱신일: {% now "Y-m-d" %}
+            <br>
+            <input type="checkbox" id="stat_style", onchange="onChangeCheckbox(this)"><label for="stat_style">줄임말 표시</label>
+        </caption>
         <tr>
             <th>인형</th>
             <th>공격성</th>
@@ -37,7 +41,11 @@
             <td>
                 <figure>
                     <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ a.algorithm.icon }}.webp" class="algorithm_icon">
-                    <figcaption><b>{{ a.algorithm.name_kr }}</b><br>{{ a.primary }}</figcaption>
+                    <figcaption>
+                        <b>{{ a.algorithm.name_kr }}</b>
+                        <br>
+                        <div class="stat default">{{ a.primary|join:" / " }}</div><div class="stat abbr" hidden>{% join_by_attr a.primary 'alias_kr' " / " %}</div>
+                    </figcaption>
                 </figure>
             </td>
         {% endfor %}
@@ -70,4 +78,5 @@
     <h1>NO DATA</h1>
 {% endif %}
 
+    <script src="{{ STATIC_PREFIX }}algorithm/script.js"></script>
 </body>
