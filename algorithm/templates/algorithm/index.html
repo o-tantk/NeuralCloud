@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>뉴럴 클라우드 알고리즘표</title>
     <link rel="icon" type="image/x-icon" href="{{ STATIC_PREFIX }}algorithm/favicon.ico">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_PREFIX }}algorithm/style.css?version={% now 'U' %}">
@@ -17,7 +18,8 @@
         <caption>
             갱신일: {% now "Y-m-d" %}
             <br>
-            <input type="checkbox" id="stat_style", onchange="onChangeCheckbox(this)"><label for="stat_style">줄임말 표시</label>
+            <input type="checkbox" id="stat_abbr", onchange="onChangeAbbr(this)"><label for="stat_abbr">줄임말로 표시</label>
+            <input type="checkbox" id="stat_secondary", onchange="onChangeSecondary(this)"><label for="stat_secondary">부옵 숨기기</label>
         </caption>
         <tr>
             <th>인형</th>
@@ -44,7 +46,10 @@
                     <figcaption>
                         <b>{{ a.algorithm.name_kr }}</b>
                         <br>
-                        <div class="stat default">{{ a.primary|join:" / " }}</div><div class="stat abbr" hidden>{% join_by_attr a.primary 'alias_kr' " / " %}</div>
+                        <div class="stat default">{{ a.primary|join:" / " }}</div><div class="stat abbr" hidden>{% join_by_attr a.primary "alias_kr" " / " %}</div>
+                        <div class="stat secondary">
+                            <div class="stat default">{{ a.secondary|join:" / " }}</div><div class="stat abbr" hidden>{% join_by_attr a.secondary "alias_kr" " / " %}</div>
+                        </div>
                     </figcaption>
                 </figure>
             </td>
