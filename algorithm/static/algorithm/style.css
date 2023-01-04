@@ -3,6 +3,8 @@
 body {
     font-family: 'Noto Sans KR', sans-serif;
     max-width: 40rem;
+    font-size: 90%;
+    word-break: keep-all;
 }
 
 a {
@@ -23,6 +25,7 @@ table {
     margin-bottom: 1rem;
     table-layout: fixed;
     width: 100%;
+    font-size: 100%;
 }
 
 caption {
@@ -104,5 +107,9 @@ li::before {
 
 .stat.secondary {
     font-size: 80%;
-    opacity: 80%;
+}
+
+hr {
+    margin: 0;
+    border-style: ridge;
 }
