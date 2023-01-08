@@ -60,17 +60,43 @@
     </table>
     <table>
         <tr>
-            <th>사용처 없음</th>
+            <th colspan="4">안 쓰는 주옵들 (미래시 포함)</th>
         </tr>
         <tr>
-            <td>
-            {% for a in useless_algos %}
+            <td colspan="4">
                 <figure>
-                    <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ a.icon }}.webp" class="algorithm_icon">
-                    <figcaption>{{ a.name_kr }}</figcaption>
+                    <figcaption>
+                    <b>모든 알고리즘 공통</b>
+                    <hr>
+                    물리관통, 물리관통%, 연산관통, 연산관통%, 연산방어, 연산방어%, 전투 후 회복
+                    <hr>
+                    <i>&lt;게임론 연산방어%&gt;는 클로토가 사용</i>
+                    <hr>
+                    <i>&lt;이성 물리방어%&gt;는 야니 발판용</i>
+                    </figcaption>
                 </figure>
-            {% endfor %}
             </td>
+        </tr>
+        <tr>
+        {% for a in useless %}
+            <td>
+                <figure>
+                    <img src="{{ STATIC_PREFIX }}algorithm/algo_icon/{{ a.algorithm.icon }}.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>{{ a.algorithm.name_kr }}</b>
+                        <hr>
+                        <div class="stat default">{% if a.desc_kr %}<i>{{ a.desc_kr }}</i>{% else %}{{ a.stats.all|join:", " }}{% endif %}</div><div class="stat abbr" hidden>{% if a.desc_kr %}<i>{{ a.desc_kr }}</i>{% else %}{% join_by_attr a.stats.all "alias_kr" ", " %}{% endif %}</div>
+                    </figcaption>
+                </figure>
+            </td>
+            {% if forloop.counter|divisibleby:4 %}
+        </tr>
+        <tr>
+            {% endif %}
+        {% endfor %}
+        {% for _ in useless|range_remainder:4 %}
+            <td></td>
+        {% endfor %}
         </tr>
     </table>
     <ul title="References" hidden>
@@ -79,6 +105,7 @@
         <li><a href="https://gall.dcinside.com/mgallery/board/view/?id=neuralcloud&no=183853"></a></li>
         <li><a href="https://arca.live/b/neuralcloud/64304242"></a></li>
         <li><a href="https://gall.dcinside.com/mgallery/board/view/?id=neuralcloud&no=72218"></a></li>
+        <li><a href="https://gall.dcinside.com/neuralcloud/201800"></a></li>
     </ul>
 {% else %}
     <h1>NO DATA</h1>

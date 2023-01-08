@@ -45,6 +45,9 @@ class Algorithm(models.Model):
     def __str__(self):
         return "[%s] %s" % (self.slot, self.name_kr)
 
+    class Meta:
+        ordering = ['slot', 'name_kr']
+
 
 class Stat(models.Model):
     name_kr = models.CharField(max_length=50)
@@ -102,3 +105,19 @@ class RecommendedSet(models.Model):
 
     def __str__(self):
         return "%s 알고리즘" % self.doll.name_kr
+
+
+class Useless(models.Model):
+    algorithm = models.ForeignKey(Algorithm, on_delete=models.CASCADE, related_name='+')
+    desc_kr = models.CharField(max_length=30, blank=True)
+    stats = models.ManyToManyField(Stat, related_name='+', blank=True)
+
+    def get_list():
+        l = list(Useless.objects.filter(algorithm__slot=Algorithm.Slot.OFFENSE))
+        l.extend(list(Useless.objects.filter(algorithm__slot=Algorithm.Slot.STABILITY)))
+        l.extend(list(Useless.objects.filter(algorithm__slot=Algorithm.Slot.SPECIAL)))
+        return l
+
+    def __str__(self):
+        return "%s: %s" % (self.algorithm.name_kr, self.desc_kr if self.desc_kr else ", ".join([str(i) for i in self.stats.all()]))
+

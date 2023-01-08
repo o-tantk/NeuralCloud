@@ -1,6 +1,6 @@
 from django.views import generic
 
-from .models import Doll, Algorithm, RecommendedSet
+from .models import Doll, RecommendedSet, Useless
 
 class IndexView(generic.ListView):
     template_name = 'algorithm/index.html'
@@ -13,5 +13,5 @@ class IndexView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['useless_algos'] = Algorithm.objects.filter(is_useless = True)
+        context['useless'] = Useless.get_list()
         return context
