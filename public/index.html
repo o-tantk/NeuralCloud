@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>뉴럴 클라우드 알고리즘표</title>
     <link rel="icon" type="image/x-icon" href="/static/algorithm/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/static/algorithm/style.css?version=1672830650">
+    <link rel="stylesheet" type="text/css" href="/static/algorithm/style.css?version=1673187222">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 
     <table>
         <caption>
-            갱신일: 2023-01-04
+            갱신일: 2023-01-08
             <br>
             <input type="checkbox" id="stat_abbr", onchange="onChangeAbbr(this)"><label for="stat_abbr">줄임말로 표시</label>
             <input type="checkbox" id="stat_secondary", onchange="onChangeSecondary(this)"><label for="stat_secondary">부옵 숨기기</label>
@@ -1270,27 +1270,197 @@
     </table>
     <table>
         <tr>
-            <th>사용처 없음</th>
+            <th colspan="4">안 쓰는 주옵들 (미래시 포함)</th>
         </tr>
         <tr>
+            <td colspan="4">
+                <figure>
+                    <figcaption>
+                    <b>모든 알고리즘 공통</b>
+                    <hr>
+                    물리관통, 물리관통%, 연산관통, 연산관통%, 연산방어, 연산방어%, 전투 후 회복
+                    <hr>
+                    <i>&lt;게임론 연산방어%&gt;는 클로토가 사용</i>
+                    <hr>
+                    <i>&lt;이성 물리방어%&gt;는 야니 발판용</i>
+                    </figcaption>
+                </figure>
+            </td>
+        </tr>
+        <tr>
+        
             <td>
+                <figure>
+                    <img src="/static/algorithm/algo_icon/점진.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>점진</b>
+                        <hr>
+                        <div class="stat default">공격력, 공격력%</div><div class="stat abbr" hidden>깡공, 공퍼</div>
+                    </figcaption>
+                </figure>
+            </td>
             
+        
+            <td>
+                <figure>
+                    <img src="/static/algorithm/algo_icon/추론.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>추론</b>
+                        <hr>
+                        <div class="stat default">연산력, 연산력%</div><div class="stat abbr" hidden>깡연, 연퍼</div>
+                    </figcaption>
+                </figure>
+            </td>
+            
+        
+            <td>
                 <figure>
                     <img src="/static/algorithm/algo_icon/머신러닝.webp" class="algorithm_icon">
-                    <figcaption>머신러닝</figcaption>
+                    <figcaption>
+                        <b>머신러닝</b>
+                        <hr>
+                        <div class="stat default"><i>안 씀</i></div><div class="stat abbr" hidden><i>안 씀</i></div>
+                    </figcaption>
                 </figure>
+            </td>
             
+        
+            <td>
+                <figure>
+                    <img src="/static/algorithm/algo_icon/이성.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>이성</b>
+                        <hr>
+                        <div class="stat default"><i>안 씀</i></div><div class="stat abbr" hidden><i>안 씀</i></div>
+                    </figcaption>
+                </figure>
+            </td>
+            
+        </tr>
+        <tr>
+            
+        
+            <td>
                 <figure>
                     <img src="/static/algorithm/algo_icon/연결.webp" class="algorithm_icon">
-                    <figcaption>연결</figcaption>
+                    <figcaption>
+                        <b>연결</b>
+                        <hr>
+                        <div class="stat default"><i>안 씀</i></div><div class="stat abbr" hidden><i>안 씀</i></div>
+                    </figcaption>
                 </figure>
+            </td>
             
+        
+            <td>
+                <figure>
+                    <img src="/static/algorithm/algo_icon/양성_피드백.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>양성 피드백</b>
+                        <hr>
+                        <div class="stat default">물리방어, 물리방어%</div><div class="stat abbr" hidden>깡방, 방퍼</div>
+                    </figcaption>
+                </figure>
+            </td>
+            
+        
+            <td>
+                <figure>
+                    <img src="/static/algorithm/algo_icon/서포트_벡터.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>서포트 벡터</b>
+                        <hr>
+                        <div class="stat default">물리방어, 물리방어%, 치명률, 치명타 피해</div><div class="stat abbr" hidden>깡방, 방퍼, 치명률, 치명피해</div>
+                    </figcaption>
+                </figure>
+            </td>
+            
+        
+            <td>
+                <figure>
+                    <img src="/static/algorithm/algo_icon/게임론.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>게임론</b>
+                        <hr>
+                        <div class="stat default">치료효과, 치명률, 치명타 피해</div><div class="stat abbr" hidden>치료효과, 치명률, 치명피해</div>
+                    </figcaption>
+                </figure>
+            </td>
+            
+        </tr>
+        <tr>
+            
+        
+            <td>
+                <figure>
+                    <img src="/static/algorithm/algo_icon/벡터_가속.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>벡터 가속</b>
+                        <hr>
+                        <div class="stat default"><i>충전속도만 씀</i></div><div class="stat abbr" hidden><i>충전속도만 씀</i></div>
+                    </figcaption>
+                </figure>
+            </td>
+            
+        
+            <td>
+                <figure>
+                    <img src="/static/algorithm/algo_icon/행렬_구조.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>행렬 구조</b>
+                        <hr>
+                        <div class="stat default">물리방어%, 치료효과</div><div class="stat abbr" hidden>방퍼, 치료효과</div>
+                    </figcaption>
+                </figure>
+            </td>
+            
+        
+            <td>
+                <figure>
+                    <img src="/static/algorithm/algo_icon/합성곱.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>합성곱</b>
+                        <hr>
+                        <div class="stat default">물리방어, 물리방어%, 치료효과</div><div class="stat abbr" hidden>깡방, 방퍼, 치료효과</div>
+                    </figcaption>
+                </figure>
+            </td>
+            
+        
+            <td>
                 <figure>
                     <img src="/static/algorithm/algo_icon/계몽.webp" class="algorithm_icon">
-                    <figcaption>계몽</figcaption>
+                    <figcaption>
+                        <b>계몽</b>
+                        <hr>
+                        <div class="stat default"><i>안 씀</i></div><div class="stat abbr" hidden><i>안 씀</i></div>
+                    </figcaption>
                 </figure>
-            
             </td>
+            
+        </tr>
+        <tr>
+            
+        
+            <td>
+                <figure>
+                    <img src="/static/algorithm/algo_icon/집속.webp" class="algorithm_icon">
+                    <figcaption>
+                        <b>집속</b>
+                        <hr>
+                        <div class="stat default">물리방어, 물리방어%, 치료효과</div><div class="stat abbr" hidden>깡방, 방퍼, 치료효과</div>
+                    </figcaption>
+                </figure>
+            </td>
+            
+        
+        
+            <td></td>
+        
+            <td></td>
+        
+            <td></td>
+        
         </tr>
     </table>
     <ul title="References" hidden>
@@ -1299,6 +1469,7 @@
         <li><a href="https://gall.dcinside.com/mgallery/board/view/?id=neuralcloud&no=183853"></a></li>
         <li><a href="https://arca.live/b/neuralcloud/64304242"></a></li>
         <li><a href="https://gall.dcinside.com/mgallery/board/view/?id=neuralcloud&no=72218"></a></li>
+        <li><a href="https://gall.dcinside.com/neuralcloud/201800"></a></li>
     </ul>
 
 
