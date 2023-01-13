@@ -113,9 +113,9 @@ class Useless(models.Model):
     stats = models.ManyToManyField(Stat, related_name='+', blank=True)
 
     def get_list():
-        l = list(Useless.objects.filter(algorithm__slot=Algorithm.Slot.OFFENSE))
-        l.extend(list(Useless.objects.filter(algorithm__slot=Algorithm.Slot.STABILITY)))
-        l.extend(list(Useless.objects.filter(algorithm__slot=Algorithm.Slot.SPECIAL)))
+        l = list(Useless.objects.filter(algorithm__slot=Algorithm.Slot.OFFENSE).order_by('algorithm__name_kr'))
+        l.extend(list(Useless.objects.filter(algorithm__slot=Algorithm.Slot.STABILITY).order_by('algorithm__name_kr')))
+        l.extend(list(Useless.objects.filter(algorithm__slot=Algorithm.Slot.SPECIAL).order_by('algorithm__name_kr')))
         return l
 
     def __str__(self):
